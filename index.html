@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil vCard Saya</title>
+    <!-- Tautan Google Fonts untuk font Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tautan CDN untuk Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6Q5tGJQgFfm1Pz9I1cVTtK9PynN2g"
+      crossorigin="anonymous"
+    />
+    <!-- Tautan CDN untuk Feather Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.css"
+    />
+    <!-- CSS -->
+    <style>
+      body {
+        background: linear-gradient(to bottom, #1abc9c, #16a085);
+        font-family: "Inter", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        text-align: center;
+      }
+
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .social-links {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .social-links li {
+        margin: 0 10px;
+      }
+
+      /* Gaya tambahan sesuai kebutuhan */
+      .social-links a {
+        display: flex;
+        align-items: center;
+        color: #333; /* Warna tautan abu-abu */
+        text-decoration: none;
+      }
+
+      .social-links a:hover {
+        color: #666; /* Warna tautan abu-abu lebih terang saat di hover */
+      }
+
+      .social-links i {
+        margin-right: 10px;
+        width: 24px;
+        height: 24px;
+      }
+
+      /* CSS untuk animasi fadeIn */
+      .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .fade-in {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card animate-on-scroll">
+      <img class="profile-img" src="./img/me.jpg" alt="Foto Profil" />
+      <h1 class="profile-name">Muqniansyah Arifin</h1>
+      <ul class="social-links">
+        <li>
+          <a href="https://www.instagram.com/iniuniyyy/" target="_blank"
+            ><i data-feather="instagram"></i>Instagram</a
+          >
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/Muqniansyah" target="_blank"
+            ><i data-feather="youtube"></i>YouTube</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/muqniansyah-a-a15b20244/"
+            target="_blank"
+            ><i data-feather="linkedin"></i>LinkedIn</a
+          >
+        </li>
+        <!-- Tambahkan tautan ke media sosial lainnya sesuai kebutuhan -->
+      </ul>
+      <p>&copy; 2023 Muqniansyah A. All rights reserved.</p>
+    </div>
+    <!-- Skrip untuk mengaktifkan ikon Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <script>
+      feather.replace();
+
+      // Ambil semua elemen ikon media sosial
+      const socialIcons = document.querySelectorAll(".social-links i");
+
+      // Tambahkan event listener untuk efek hover
+      socialIcons.forEach((icon) => {
+        icon.addEventListener("mouseenter", () => {
+          icon.style.transform = "scale(1.2)"; // Atur ukuran sedikit lebih besar saat hover
+          icon.style.transition = "transform 0.2s ease"; // Animasi perubahan ukuran
+        });
+
+        icon.addEventListener("mouseleave", () => {
+          icon.style.transform = "scale(1)"; // Kembalikan ukuran saat tidak di-hover
+        });
+      });
+
+      // Fungsi untuk mengecek apakah elemen ada dalam tampilan viewport
+      function isElementInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }
+
+      // Fungsi untuk menambahkan kelas animasi ketika elemen muncul dalam viewport
+      function animateOnScroll() {
+        const elementsToAnimate =
+          document.querySelectorAll(".animate-on-scroll");
+        elementsToAnimate.forEach((element) => {
+          if (isElementInViewport(element)) {
+            element.classList.add("fade-in"); // Tambahkan kelas fade-in
+          }
+        });
+      }
+
+      // Panggil fungsi saat halaman di-scroll
+      window.addEventListener("scroll", animateOnScroll);
+      animateOnScroll(); // Panggil fungsi untuk animasi saat halaman pertama kali dimuat
+    </script>
+  </body>
+</html>
